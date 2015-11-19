@@ -1,8 +1,13 @@
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 let mapleader = ','
 colorscheme monokai
+"colorscheme mustang
+set t_Co=256
 
-"Mac vim paste
+"Mac/Win clipboard
 "set clipboard+=unnamed
+"建议使用 :set 的 += 和 -= 特性，这可以避免未来版本增加新的标志位时出现的问题
 
 set nocompatible            "IMproved
 syn on                      "语法支持
@@ -16,8 +21,9 @@ set laststatus=2            "总是显示,w状态行
 set expandtab               "以下三个配置配合使用，设置tab和缩进空格数
 set shiftwidth=4            "统一缩进为4
 set tabstop=4               "Tab的宽度
-set cursorline              "为光标所在行加下划线
-set number                  "显示行号
+set cursorline
+set cursorcolumn
+set number
 set relativenumber
 set autoread                "文件在Vim之外修改过，自动重新读入
 set mouse=a                 "自动启用鼠标
@@ -32,7 +38,7 @@ set helplang=cn             "帮助系统设置为中文
 set foldmethod=syntax       "代码折叠
 
 
-"ctags 
+"ctags
 filetype on
 filetype plugin on
 
@@ -67,7 +73,7 @@ filetype plugin indent on    " required
 
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'   
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
@@ -106,7 +112,7 @@ let g:syntastic_enable_balloons = 1
 "let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler_options = '-std=c++1z '
 " [syntastic]$
- 
+
 
 
 " [The-NERD-tree](plugin)(file)
