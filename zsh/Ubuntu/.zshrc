@@ -5,11 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-#ZSH_THEME="bureau"
+ZSH_THEME="bureau"
 
-# Powerline
-. ~/powerline-develop/powerline/bindings/zsh/powerline.zsh
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -54,8 +51,7 @@ plugins=(git)
 
 plugins=(autojump)
 # autojump
-#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 
 source $ZSH/oh-my-zsh.sh
@@ -88,49 +84,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/X
 #
 
 
-# Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Users/air9/Library/Cocos/CocosStore/cocos2d-x-3.4/tools/cocos2d-console/bin
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT=/Users/air9/Library/Cocos/CocosStore/cocos2d-x-3.4/templates
-export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-
-# Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=/Applications/adt-bundle-mac-x86_64/ndk/android-ndk-r10d
-export PATH=$NDK_ROOT:$PATH
-
-# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
-export ANDROID_SDK_ROOT=/Applications/adt-bundle-mac-x86_64/sdk
-export PATH=$ANDROID_SDK_ROOT:$PATH
-export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
-
-# Add environment variable ANT_ROOT for cocos2d-x
-export ANT_ROOT=/usr/local/Cellar/ant/1.9.4/libexec/bin
-export PATH=$ANT_ROOT:$PATH
-
-# Add TeXlive
-export PATH=/usr/local/texlive/2014/bin/universal-darwin:$PATH
-
-# Proxy
-alias proxyon='export http_proxy=http://127.0.0.1:40632/gtxhvBfie1Xe-RW8oZjfyA https_proxy=http://127.0.0.1:40632/gtxhvBfie1Xe-RW8oZjfyA'
-alias proxyoff='unset http_proxy https_proxy'
-
-
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias sz='source .zshrc'
 alias mv='mv -v'
 alias cp='cp -vr'
 alias rm='rm -vr'
-alias sc='scrapy crawl'
 alias p='python'
-alias vim='/usr/local/bin/vim'
 
 
 
