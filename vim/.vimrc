@@ -6,14 +6,14 @@ colorscheme monokai
 set t_Co=256
 
 "Mac/Win clipboard
-"set clipboard+=unnamed
+set clipboard+=unnamed
 "建议使用 :set 的 += 和 -= 特性，这可以避免未来版本增加新的标志位时出现的问题
 
 set nocompatible            "IMproved
 syn on                      "语法支持
 syn enable                  "语法高亮
 set ai                      "自动缩进
-set smartindent             "智能缩进
+"set smartindent             "智能缩进
 set bs=2                    "在insert模式下用退格键删除
 set showmatch               "代码匹配
 set laststatus=2            "总是显示,w状态行
@@ -21,8 +21,15 @@ set laststatus=2            "总是显示,w状态行
 set expandtab               "以下三个配置配合使用，设置tab和缩进空格数
 set shiftwidth=4            "统一缩进为4
 set tabstop=4               "Tab的宽度
+
 set cursorline
 set cursorcolumn
+set scrolloff=9
+"set guicursor=a:block-blinkon0
+
+" 打开时自动跳转至上次光标位置
+au BufReadPost * exe "normal! g`\""
+
 set number
 set relativenumber
 set autoread                "文件在Vim之外修改过，自动重新读入
@@ -30,10 +37,12 @@ set mouse=a                 "自动启用鼠标
 set writebackup             "保存文件前建立备份，保存成功后删除该备份
 "set nobackup                "设置无备份文件
 set noswapfile              "设置无临时文件
+"set undofile                "保存undo记录
 
 set ignorecase              "检索时忽略大小写
 set fileencodings=uft-8,gbk "使用utf-8或gbk打开文件
 set hls                     "检索时高亮显示匹配项
+set incsearch               "逐步匹配搜索项
 set helplang=cn             "帮助系统设置为中文
 set foldmethod=syntax       "代码折叠
 
@@ -71,19 +80,23 @@ filetype plugin indent on    " required
 
 
 
+Bundle 'bling/vim-airline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'bling/vim-airline'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'majutsushi/tagbar'
 Bundle 'sjl/gundo.vim'
 Bundle 'terryma/vim-expand-region'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'kshenoy/vim-signature'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'thinca/vim-quickrun'
 
 
 
@@ -93,6 +106,13 @@ Bundle 'kien/ctrlp.vim'
 
 
 " ============================ Plugin Details ============================
+
+
+
+
+
+
+
 
 
 
@@ -154,6 +174,12 @@ nmap <leader>tb :TagbarToggle<CR>
 
 
 
+"[gundo](plugin)
+nmap <leader>u :GundoToggle<CR>
+"[gundo]$
+
+
+
 " [RainbowParentheses](plugin)(color)
 autocmd VimEnter * RainbowParenthesesActivate
 autocmd Syntax * RainbowParenthesesLoadRound
@@ -163,11 +189,51 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 
+"[vim-signature](plugin)(move)
+"   m[a-zA-Z]   打标签
+"   '[a-zA-Z]   跳转到标签位置
+"   '.          最后一次变更的地方
+"   ''          跳回来的地方(最近两个位置跳转)
+"   m<space>    去除所有标签
+"[vim-signature]$
+
+
+
+" [vim-surround](plugin)(efficiency)
+"let g:surround_no_mappingsg = 1
+"Normal mode
+"-----------
+"ds  - delete a surrounding
+"cs  - change a surrounding
+"ys  - add a surrounding
+"yS  - add a surrounding and place the surrounded text on a new line + indent it
+"yss - add a surrounding to the whole line
+"ySs - add a surrounding to the whole line, place it on a new line + indent it
+"ySS - same as ySs
+"
+"Visual mode
+"-----------
+"S   - in visual mode, add a surrounding
+"gS   - in visual mode, add a surrounding but place text on new line + indent it
+
+"Insert mode
+"-----------
+"<CTRL-s> - in insert mode, add a surrounding
+"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+"<CTRL-g>s - same as <CTRL-s>
+"<CTRL-g>S - same as <CTRL-s><CTRL-s>
+" [vim-surround]$
+
+
+
+
+
 
 
 
 
 " ============================ key map ============================
+
 
 
 nnoremap k gk
@@ -185,6 +251,9 @@ inoremap <C-a> <Home>
 map <C-e> g_
 inoremap <C-e> <End>
 
+" move line like Sublime
+nnoremap <C-S-Up> ddP
+nnoremap <C-S-Down> ddp
 
 "buffer & tab
 nmap <leader>bn :bnext<CR>
@@ -238,14 +307,14 @@ nnoremap U <C-r>
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
-nnoremap ' `
-nnoremap ` '
+"nnoremap ' `
+"nnoremap ` '
 
 " switch # *
 " nnoremap # *
 " nnoremap * #
 
-"Keep search pattern at the center of the screen."
+" Keep search pattern at the center of the screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
@@ -276,5 +345,18 @@ cnoremap <C-e> <End>
 
 
 
-"showcmd,  have to be set at last to avoid overriding
+
+
+
+
+
+
+
+
+
+
+
+
+
+"showcmd, avoid overriding
 set sc
