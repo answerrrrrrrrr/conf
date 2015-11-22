@@ -1,0 +1,440 @@
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+let mapleader = ','
+let g:mapleader = ','
+colorscheme monokai
+"colorscheme mustang
+set t_Co=256
+
+"Mac/Win clipboard
+set clipboard+=unnamed
+"建议使用 :set 的 += 和 -= 特性，这可以避免未来版本增加新的标志位时出现的问题
+
+set nocompatible            "IMproved
+syn on                      "语法支持
+syn enable                  "语法高亮
+set ai                      "自动缩进
+"set smartindent             "智能缩进
+set bs=2                    "在insert模式下用退格键删除
+set showmatch               "代码匹配
+set laststatus=2            "总是显示,w状态行
+
+set expandtab               "以下三个配置配合使用，设置tab和缩进空格数
+set shiftwidth=4            "统一缩进为4
+set tabstop=4               "Tab的宽度
+
+set cursorline
+set cursorcolumn
+set scrolloff=9
+"set guicursor=a:block-blinkon0
+
+" 打开时自动跳转至上次光标位置
+au BufReadPost * exe "normal! g`\""
+
+set number
+set relativenumber
+set autoread                "文件在Vim之外修改过，自动重新读入
+set mouse=a                 "自动启用鼠标
+set writebackup             "保存文件前建立备份，保存成功后删除该备份
+"set nobackup                "设置无备份文件
+set noswapfile              "设置无临时文件
+"set undofile                "保存undo记录
+
+set ignorecase              "检索时忽略大小写
+set fileencodings=uft-8,gbk "使用utf-8或gbk打开文件
+set hls                     "检索时高亮显示匹配项
+set incsearch               "逐步匹配搜索项
+set helplang=cn             "帮助系统设置为中文
+set foldmethod=syntax       "代码折叠
+
+
+"ctags
+filetype on
+filetype plugin on
+
+
+
+"" powerline config
+"set rtp+=~/powerline-develop/powerline/bindings/vim
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+"set laststatus=2
+"let g:Powerline_symbols = 'fancy'
+"set encoding=utf-8
+"set t_Co=256
+"set number
+"set fillchars+=stl:\ ,stlnc:\
+"set term=xterm-256color
+"set termencoding=utf-8
+"syntax enable
+
+
+
+
+"Vundle
+set nocompatible              " required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+
+Bundle 'bling/vim-airline'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'easymotion/vim-easymotion'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'majutsushi/tagbar'
+Bundle 'sjl/gundo.vim'
+Bundle 'terryma/vim-expand-region'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kshenoy/vim-signature'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'thinca/vim-quickrun'
+Bundle 'Shougo/neocomplete'
+
+
+
+
+
+
+
+
+" ============================ Plugin Details ============================
+
+
+
+
+
+
+
+
+
+
+" [syntastic](plugin)(syntax)
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_enable_balloons = 1
+
+"let g:syntastic_cpp_include_dirs = ['/usr/include/']
+"let g:syntastic_cpp_remove_include_errors = 1
+"let g:syntastic_cpp_check_header = 1
+"let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler_options = '-std=c++1z '
+" [syntastic]$
+
+
+
+" [The-NERD-tree](plugin)(file)
+nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\~$', 'node_modules']
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+" 当不带参数打开Vim时自动加载项目树
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 不显示项目树上额外的信息，例如帮助、提示什么的
+let NERDTreeMinimalUI=1
+" [The-NERD-tree]$
+
+
+
+" [vim-multiple-cursors](plugin)(efficiency)
+"let g:multi_cursor_use_default_mapping=0
+" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+" [vim-multiple-cursors]$
+
+
+
+"[EasyAlign](plugin)(efficiency)
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+"[EasyAlign]$
+
+
+
+"[tagbar](plugin)
+nmap <leader>tb :TagbarToggle<CR>
+"[tagbar]$
+
+
+
+"[gundo](plugin)
+nmap <leader>u :GundoToggle<CR>
+"[gundo]$
+
+
+
+"[RainbowParentheses](plugin)(color)
+autocmd VimEnter * RainbowParenthesesActivate
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
+"[RainbowParentheses]$
+
+
+
+"[vim-signature](plugin)(move)
+"   m[a-zA-Z]   打标签
+"   '[a-zA-Z]   跳转到标签位置
+"   '.          最后一次变更的地方
+"   ''          跳回来的地方(最近两个位置跳转)
+"   m<space>    去除所有标签
+"[vim-signature]$
+
+
+
+"[vim-surround](plugin)(efficiency)
+"let g:surround_no_mappingsg = 1
+"Normal mode
+"-----------
+"ds  - delete a surrounding
+"cs  - change a surrounding
+"ys  - add a surrounding
+"yS  - add a surrounding and place the surrounded text on a new line + indent it
+"yss - add a surrounding to the whole line
+"ySs - add a surrounding to the whole line, place it on a new line + indent it
+"ySS - same as ySs
+"
+"Visual mode
+"-----------
+"S   - in visual mode, add a surrounding
+"gS   - in visual mode, add a surrounding but place text on new line + indent it
+
+"Insert mode
+"-----------
+"<CTRL-s> - in insert mode, add a surrounding
+"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+"<CTRL-g>s - same as <CTRL-s>
+"<CTRL-g>S - same as <CTRL-s><CTRL-s>
+"[vim-surround]$
+
+
+
+"[neocomplete](plugin)
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" 取消补全时弹出preview
+set completeopt=menu
+" 或 set completeopt-=preview
+"[neocomplete]$
+
+
+
+
+
+" ============================ key map ============================
+
+
+
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+map <C-a> ^
+inoremap <C-a> <Home>
+map <C-e> g_
+inoremap <C-e> <End>
+
+" move line like Sublime
+nnoremap <C-S-Up> ddP
+nnoremap <C-S-Down> ddp
+
+"buffer & tab
+nmap <leader>bn :bnext<CR>
+nmap <leader>bp :bprevious<CR>
+nmap <leader>bd :bdelete<CR>
+nmap <leader>bf :bfirst<CR>
+nmap <leader>bl :blast<CR>
+nmap <leader>bs :buffers<CR>
+
+nmap <leader>tt :tabnew<CR>
+nmap <leader>tn :tabnext<CR>
+nmap <leader>tp :tabprevious<CR>
+nmap <leader>tc :tabclose<CR>
+nmap <leader>tf :tabfirst<CR>
+nmap <leader>tl :tablast<CR>
+nmap <leader>ts :tabs<CR>
+
+
+
+nmap <leader>y "+y
+vmap <leader>y "+y
+nmap <leader>p "+p
+nmap <leader>P "+P
+
+
+
+nnoremap <F2> :set nu! nu?<CR>
+nnoremap <F2> inore:set nu! nu?<CR>
+nnoremap <F3> :set list! list?<CR>
+nnoremap <F4> :set wrap! wrap?<CR>
+set pastetoggle=<leader>p       "insert <--> paste mode, no autoindented
+au InsertLeave * set nopaste
+nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+
+" kj 替换 Esc
+inoremap kj <Esc>
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
+" Force to save
+nnoremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" select all
+map <Leader>sa ggVG"
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+"nnoremap ' `
+"nnoremap ` '
+
+" switch # *
+" nnoremap # *
+" nnoremap * #
+
+" Keep search pattern at the center of the screen
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" remove highlight
+noremap <silent><leader>/ :nohls<CR>
+
+"Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+
+"Map ; to : and save a million keystrokes
+" ex mode commands made easy 用于快速进入命令行
+nnoremap ; :
+
+
+" command mode
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"showcmd, avoid overriding
+set sc
