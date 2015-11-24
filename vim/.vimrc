@@ -27,7 +27,7 @@ let g:mapleader = ','
 syntax on
 
 " Vundle
-" git clone https:k/github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible              " required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -39,6 +39,7 @@ filetype plugin indent on    " required
 
 
 "Bundle 'tomasr/molokai'
+"Bundle 'crusoexia/vim-monokai'
 "Bundle 'bling/vim-airline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -172,6 +173,20 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 "==========================================
+" quickrun
+let g:quickrun_config = {
+            \   "_" : {
+            \       "outputter" : "message",
+            \   },
+            \}
+
+"let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>r <Plug>(quickrun)
+"map <F10> :QuickRun<CR>
+
+
+
+"==========================================
 " neocomplete
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -212,8 +227,8 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -245,20 +260,24 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" 取消补全时弹出preview
-"set completeopt=menu
-"set completeopt-=preview
-
 
 
 "==========================================
+
+
+
+
+
+
+
+
 
 "==========================================
 " General Settings 基础设置
 "==========================================
 
 "Mac/Win clipboard
-set clipboard+=unnamed
+"set clipboard+=unnamed
 "建议使用 :set 的 += 和 -= 特性，这可以避免未来版本增加新的标志位时出现的问题
 
 " history存储容量
@@ -355,7 +374,7 @@ set laststatus=2
 "显示行号：
 set number
 " 取消换行。
-set nowrap
+"set nowrap
 
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
@@ -469,7 +488,7 @@ autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 l
 set completeopt=menu
 
 " cmode autocomplete
-set wildmode=list:full
+set wildmode=list:longest
 "set wildmenu
 set wildignore=*.o,*~,*.swp,*.bak,*.pyc,.svn
 
@@ -511,16 +530,16 @@ nnoremap j gj
 nnoremap gj j
 
 " F1 - F6 设置
-" F1 废弃这个键,防止调出系统帮助
+" F1 废弃这个键,防止调出系统帮助 ---> 改为NeoCompleteToggle
 " F2 行号开关，用于鼠标复制代码用
 " F3 显示可打印字符开关
 " F4 换行开关
 " F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " F6 语法开关，关闭语法可以加快大文件的展示
 
-noremap <F1> <Esc>"
+noremap <F1> :NeoCompleteToggle<CR>
 
-""为方便复制，用<F2>开启/关闭行号显示:
+" 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
   if(&relativenumber == &number)
     set relativenumber! number!
@@ -536,9 +555,10 @@ nnoremap <F2> :call HideNumber()<CR>
 " 显示不可见字符
 nnoremap <F3> :set list! list?<CR>
 
+" 换行
 nnoremap <F4> :set wrap! wrap?<CR>
 
-"set paste
+" set paste
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
@@ -806,7 +826,6 @@ endif
 set background=dark
 set t_Co=256
 colorscheme monokai
-"let g:molokai_original = 1
 
 " 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
@@ -826,14 +845,9 @@ highlight SpellLocal term=underline cterm=underline
 " powerline
 set rtp+=~/powerline-develop/powerline/bindings/vim
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-set laststatus=2
 let g:Powerline_symbols = 'fancy'
-set encoding=utf-8
-set t_Co=256
-set number
-set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
-set termencoding=utf-8
-syntax enable
+"set fillchars+=stl:\ ,stlnc:\
+"set term=xterm-256color
+"syntax enable
 
 
