@@ -1,3 +1,10 @@
+# sudo apt-get install zsh
+# chsh -s /bin/zsh
+# wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+
+
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -90,6 +97,6 @@ alias mv='mv -v'
 alias cp='cp -vr'
 alias rm='rm -vr'
 alias p='python'
-
+alias tmux='tmux -2'
 
 

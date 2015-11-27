@@ -391,6 +391,7 @@ set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
+
 " 代码折叠
 set foldenable
 " 折叠方法
@@ -427,6 +428,9 @@ set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
 set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
+
+" tab和space可见
+set list listchars=tab:→\ ,trail:·
 
 " A buffer becomes hidden when it is abandoned
 "set hidden
@@ -584,6 +588,10 @@ cnoremap <C-a> <Home>
 inoremap <C-a> <Home>
 cnoremap <C-e> <End>
 inoremap <C-e> <End>
+
+" 插入模式操作(SecureCRT需设置“Backspace send delete”)
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
