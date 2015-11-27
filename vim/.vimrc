@@ -537,7 +537,7 @@ nnoremap gj j
 " F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " F6 语法开关，关闭语法可以加快大文件的展示
 
-noremap <F1> :NeoCompleteToggle<CR>
+nmap <F1> :NeoCompleteToggle<CR>
 
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -848,6 +848,5 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 let g:Powerline_symbols = 'fancy'
 "set fillchars+=stl:\ ,stlnc:\
 "set term=xterm-256color
-"syntax enable
 
 
