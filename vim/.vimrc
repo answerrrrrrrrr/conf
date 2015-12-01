@@ -520,6 +520,12 @@ endif
 
 " 主要按键重定义
 
+" Map ; to : and save a million keystrokes
+nnoremap ; :
+
+" Esc & save
+inoremap lk <Esc>:w<CR>
+
 " 关闭方向键, 强迫自己用 hjkl
 map <Left> <Nop>
 map <Right> <Nop>
@@ -572,14 +578,18 @@ au InsertLeave * set nopaste
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
-"分屏窗口移动
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" 分屏窗口移动
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
 
-" Map ; to : and save a million keystrokes
-nnoremap ; :
+" 插入模式操作(SecureCRT需设置“Backspace send delete”)
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
+inoremap <C-o> <Esc>o
 
 " home & end
 nnoremap <C-a> ^
@@ -589,9 +599,6 @@ inoremap <C-a> <Home>
 cnoremap <C-e> <End>
 inoremap <C-e> <End>
 
-" 插入模式操作(SecureCRT需设置“Backspace send delete”)
-inoremap <C-h> <left>
-inoremap <C-l> <right>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -707,9 +714,6 @@ nnoremap <leader>bn V`}
 
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
-
-" Esc & save
-inoremap lk <Esc>:w<CR>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
