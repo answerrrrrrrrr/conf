@@ -540,14 +540,14 @@ nnoremap j gj
 nnoremap gj j
 
 " F1 - F6 设置
-" F1 废弃这个键,防止调出系统帮助 ---> 改为NeoCompleteToggle
+" F1 废弃这个键,防止调出系统帮助
 " F2 行号开关，用于鼠标复制代码用
 " F3 显示可打印字符开关
 " F4 换行开关
 " F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " F6 语法开关，关闭语法可以加快大文件的展示
 
-nmap <F1> :NeoCompleteToggle<CR>
+nmap <F1> <Esc>
 
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -576,6 +576,12 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 au InsertLeave * set nopaste
 
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+
+" NeoCompleteToggle
+nmap <F7> :NeoCompleteToggle<CR>
+
+" SyntasticToggle
+nmap <F8> :SyntasticToggleMode<CR>
 
 
 " 分屏窗口移动
