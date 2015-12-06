@@ -771,14 +771,14 @@ autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 
 
-" 保存python文件时删除多余空格
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" 保存文件时删除多余空格
+"fun! <SID>StripTrailingWhitespaces()
+    "let l = line(".")
+    "let c = col(".")
+    "%s/\s\+$//e
+    "call cursor(l, c)
+"endfun
+"autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
 " 定义函数AutoSetFileHead，自动插入文件头
@@ -863,7 +863,7 @@ highlight SpellLocal term=underline cterm=underline
 " powerline
 set rtp+=~/powerline-develop/powerline/bindings/vim
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 "set fillchars+=stl:\ ,stlnc:\
 "set term=xterm-256color
 
