@@ -39,8 +39,8 @@ filetype plugin indent on    " required
 
 
 "Bundle 'tomasr/molokai'
-"Bundle 'crusoexia/vim-monokai'
-"Bundle 'bling/vim-airline'
+Bundle 'crusoexia/vim-monokai'
+Bundle 'bling/vim-airline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
