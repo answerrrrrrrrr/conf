@@ -124,13 +124,20 @@ alias proxyoff='unset http_proxy https_proxy'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias sz='source .zshrc'
+alias vz='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
+alias op='open .'
 alias mv='mv -v'
 alias cp='cp -vr'
 alias rm='rm -vr'
 alias sc='scrapy crawl'
 alias p='python'
-alias vim='/usr/local/bin/vim'
+alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
+alias macd="open -a /Applications/MacDown.app"
+alias sv='source ~/venv/bin/activate'
 
 
 
+
+# rbenv
+eval   "$(rbenv init -)"
