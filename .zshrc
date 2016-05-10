@@ -115,6 +115,9 @@ export PATH=$ANT_ROOT:$PATH
 # Add TeXlive
 export PATH=/usr/local/texlive/2014/bin/universal-darwin:$PATH
 
+# Add mysql
+export PATH=$PATH:/usr/local/mysql/bin
+
 # Proxy
 alias proxyon='export http_proxy=http://127.0.0.1:40632/gtxhvBfie1Xe-RW8oZjfyA https_proxy=http://127.0.0.1:40632/gtxhvBfie1Xe-RW8oZjfyA'
 alias proxyoff='unset http_proxy https_proxy'
@@ -124,20 +127,33 @@ alias proxyoff='unset http_proxy https_proxy'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vz='vim ~/.zshrc'
-alias sz='source ~/.zshrc'
 alias op='open .'
 alias mv='mv -v'
 alias cp='cp -vr'
 alias rm='rm -vr'
-alias sc='scrapy crawl'
+alias pg='ps -e | grep'
 alias p='python'
+
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 alias macd="open -a /Applications/MacDown.app"
+
+alias vz='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
 alias sv='source ~/venv/bin/activate'
+alias s3v='source ~/v3.5.1env/bin/activate'
 
 
 
 
 # rbenv
 eval   "$(rbenv init -)"
+
+# pyenv
+# To use Homebrew‘s directories rather than ~/.pyenv add to your profile:
+export PYENV_ROOT=/usr/local/var/pyenv
+# To enable shims and autocompletion add to your profile:
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+#proxy
+#export http_proxy=http://127.0.0.1:8118
+#export https_proxy=http://127.0.0.1:8118
