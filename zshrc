@@ -48,10 +48,6 @@ ZSH_THEME="bureau"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump)
 
-# autojump
-#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -75,6 +71,12 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# autojump
+#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
+# fzf
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -96,10 +98,11 @@ alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 alias vv='vim $DOTFILES/vimrc'
 alias vt='vim $DOTFILES/tmux.conf'
 alias vz='vim $DOTFILES/zshrc'
-alias sz='source $DOTFILES/zshrc'
+#alias sz='source $DOTFILES/zshrc'
+alias sz='source ~/.zshrc'
 
 alias t2x='tmux show-buffer | xclip -selection clipboard'
 alias x2t='tmux set-buffer "$(xclip -o)"'
 
-export DOTFILES=/root/Desktop/MyNuts/Nutstore/dotfiles
-export DOTFILES=/root/Documents/Nutstore/dotfiles
+export DOTFILES=~/Documents/Nutstore/dotfiles
+

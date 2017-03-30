@@ -4,7 +4,7 @@
 " Based on: https://github.com/wklken/k-vim
 "
 " Index:
-"       -> Bundle Plugins 插件
+"       -> Plugins 插件
 "       -> General Settings 基础设置
 "       -> Display Settings 展示/排版等界面格式设置
 "       -> Encode Settings 文件编码设置
@@ -16,7 +16,7 @@
 "==========================================
 
 "==========================================
-" Bundle Plugins 插件
+" Plugins 插件
 "==========================================
 
 " 修改leader键
@@ -26,40 +26,33 @@ let g:mapleader = ','
 "R0 开启语法高亮
 syntax on
 
-" Vundle
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-set nocompatible              " required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Bundle 'gmarik/Vundle.vim'
-call vundle#end()            " required
-filetype plugin indent on    " required
 
+" [vim-plug]
+" description: a plugin managing vim plugins
+call plug#begin('~/.vim/plugged')
 
+"plug 'tomasr/molokai'
+Plug 'crusoexia/vim-monokai'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
+Plug 'sjl/gundo.vim'
+Plug 'terryma/vim-expand-region'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'thinca/vim-quickrun'
+Plug 'Shougo/neocomplete'
 
-"Bundle 'tomasr/molokai'
-Bundle 'crusoexia/vim-monokai'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
-Bundle 'terryma/vim-expand-region'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kshenoy/vim-signature'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'thinca/vim-quickrun'
-Bundle 'Shougo/neocomplete'
-
-
+call plug#end()
 
 "==========================================
 " syntastic
@@ -868,3 +861,5 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 "set term=xterm-256color
 
 
+" fzf
+set rtp+=~/.fzf

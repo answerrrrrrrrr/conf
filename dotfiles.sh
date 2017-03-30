@@ -11,26 +11,38 @@ if [ -f ~/.vimrc ]; then
 fi
 echo "source $filepath/vimrc" > ~/.vimrc
 
-if [ ! -d ~/.vim/bundle ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#if [ ! -d ~/.vim/bundle ]; then
+    #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#else
+    #echo "[*] Vundle exists."
+#fi
+
+
+if [ ! -d ~/.vim/autoload ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
-    echo "[*] Vundle exists."
+    echo "[*] vim-plug exists."
 fi
+
 
 if [ -f ~/.tmux.conf ]; then
     mv ~/.tmux.conf ~/.tmux.conf.bak
 fi
 echo "source $filepath/tmux.conf" > ~/.tmux.conf
 
+
 if [ -f ~/.gitconfig ]; then
     mv ~/.gitconfig ~/.gitconfig.bak
 fi
 cp $filepath/gitconfig ~/.gitconfig
 
+
 if [ -f ~/.zshrc ]; then
     mv ~/.zshrc ~/.zshrc.bak
 fi
 echo "source $filepath/zshrc" > ~/.zshrc
+
 
 if [ ! -d ~/.oh-my-zsh ]
 then
@@ -40,8 +52,19 @@ else
 fi
 cp amber.zsh-theme  ~/.oh-my-zsh/themes
 
+
+#if [ ! -d ~/.fzf ]
+#then
+    #git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    #~/.fzf/install
+#else
+    #echo "[*] fzf exists."
+#fi
+
+
 chsh -s /bin/zsh
-echo "export DOTFILES=$filepath" >> $filepath/zshrc
+#echo "export DOTFILES=$filepath" >> $filepath/zshrc
+
 
 echo -n "[*] Ready to reboot? [y/N]"
 read choice
