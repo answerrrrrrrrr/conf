@@ -20,41 +20,93 @@
 "==========================================
 
 " 修改leader键
-let mapleader = ','
+let mapleader   = ','
 let g:mapleader = ','
 
 "R0 开启语法高亮
 syntax on
 
 
-" [vim-plug]
-" description: a plugin managing vim plugins
+" vim-plug
 call plug#begin('~/.vim/plugged')
 
-"plug 'tomasr/molokai'
 Plug 'crusoexia/vim-monokai'
 Plug 'bling/vim-airline'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'junegunn/vim-easy-align'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion' " quick location
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/a.vim',  { 'for': ['c', 'cpp'] } " switch source and header
+Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] } " gtags instead of cscope
 Plug 'sjl/gundo.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'kshenoy/vim-signature'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+Plug 'kien/ctrlp.vim' " file fuzz
+Plug 'dyng/ctrlsf.vim' " global search results with context
+Plug 'kshenoy/vim-signature' " enhanced marks
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession' " save session of buffers and tabs
 Plug 'thinca/vim-quickrun'
 Plug 'Shougo/neocomplete'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'plasticboy/vim-markdown'
+
 
 call plug#end()
 
+
 "==========================================
+" airline
+
+"let g:airline_theme="ravenpower"
+"
+"let g:airline_powerline_fonts = 1
+"let g:airline_detect_iminsert=1
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffers_label = 'b'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#tabs_label = 't'
+
+"let g:airline#extensions#obsession#enabled = 1
+"let g:airline#extensions#obsession#indicator_text = '☯'
+
+" 关闭状态显示空白符号计数
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+
+"let g:airline#extensions#ctrlspace#enabled = 1
+"let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
+
+"let g:airline#extensions#ycm#enabled = 1
+
+
+
+" vim-indent-guides
+nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter * :hi IndentGuidesOdd  guibg=grey10 ctermbg=233
+autocmd VimEnter * :hi IndentGuidesEven guibg=grey15 ctermbg=236
+
+
+
+" easy-align
+vmap <Enter> <Plug>(EasyAlign)
+
+
+
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -73,7 +125,6 @@ let g:syntastic_enable_balloons = 1
 
 
 
-"==========================================
 " The-NERD-tree
 nnoremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
@@ -88,7 +139,18 @@ let NERDTreeMinimalUI=1
 
 
 
-"==========================================
+" EasyMotion
+"<Leader><Leader>w
+"<Leader><Leader>e
+"<Leader><Leader>f
+"<Leader><Leader>b
+"<Leader><Leader>h
+"<Leader><Leader>k
+"...
+":h easymotion
+
+
+
 " vim-multiple-cursors
 "let g:multi_cursor_use_default_mapping=0
 " Default mapping
@@ -99,26 +161,68 @@ let NERDTreeMinimalUI=1
 
 
 
-"==========================================
-" EasyAlign
-vmap <Leader>a <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
-
-
-
-"==========================================
 " tagbar
 nmap <leader>tb :TagbarToggle<CR>
 
 
 
-"==========================================
+" a.vim
+"头/源文件切换命令
+    ":A 头文件／源文件切换
+    ":AS 分割窗后并切换头/源文件(切割为上下两个窗口)
+    ":AV 垂直切割窗口后切换头/源文件(切割为左右两个窗口)
+    ":AT 新建Vim标签式窗口后切换
+    ":AN 在多个匹配文件间循环切换
+"将光标所在处单词作为文件名打开
+    ":IH 切换至光标所在文件
+    ":IHS 分割窗口后切换至光标所在文件(指将光标所在处单词作为文件名打开)
+    ":IHV 垂直分割窗口后切换
+    ":IHT 新建标签式窗口后切换
+    ":IHN 在多个匹配文件间循环切换
+"快捷键操作
+    "<Leader>ih 切换至光标所在文件*
+    "<Leader>is 切换至光标所在处(单词所指)文件的配对文件(如光标所在处为foo.h，则切换至foo.c/foo.cpp...)
+    "<Leader>ihn 在多个匹配文件间循环切换
+
+
+
+" gtags
+set cscopetag " 使用 cscope 作为 tags 命令
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
+
+"Find this C symbol:
+"Find this global definition:
+"Find functions called by this function:
+"Find functions calling this function:
+"Find this egrep pattern:
+"Find this file:
+"Find files #including this file:
+"Find assignments to this symbol:
+nmap <leader>gs :cs find s <C-R>=expand('<cword>')<CR><CR>
+nmap <leader>gg :cs find g <C-R>=expand('<cword>')<CR><CR>
+nmap <leader>gc :cs find c <C-R>=expand('<cword>')<CR><CR>
+nmap <leader>gt :cs find t <C-R>=expand('<cword>')<CR><CR>
+nmap <leader>ge :cs find e <C-R>=expand('<cword>')<CR><CR>
+nmap <leader>gf :cs find f <C-R>=expand('<cfile>')<CR><CR>
+nmap <leader>gi :cs find i ^<C-R>=expand('<cfile>')<CR>$<CR>
+nmap <leader>gd :cs find d <C-R>=expand('<cword>')<CR><CR>
+
+
+
 " gundo
 nmap <leader>u :GundoToggle<CR>
 
 
 
-"==========================================
+" vim-expand-region
+" default keymaps + and _
+
+
+
 " RainbowParentheses
 autocmd VimEnter * RainbowParenthesesActivate
 autocmd Syntax * RainbowParenthesesLoadRound
@@ -127,7 +231,6 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 
-"==========================================
 " vim-signature
 "   m[a-zA-Z]   打标签
 "   '[a-zA-Z]   跳转到标签位置
@@ -137,9 +240,20 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 
-"==========================================
-" vim-surround
+" ctrlsf
+let g:ctrlsf_ackprg = 'ag'
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath 
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" press p in results window to preview
 
+
+
+" vim-surround
 "let g:surround_no_mappingsg = 1
 "Normal mode
 "-----------
@@ -150,6 +264,46 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 "yss - add a surrounding to the whole line
 "ySs - add a surrounding to the whole line, place it on a new line + indent it
 "ySS - same as ySs
+"
+"示例:
+"    # 替换: cs"'
+"    "Hello world!" -> 'Hello world!'
+"    
+"    # 替换-标签(t=tag): cst"
+"    <a>abc</a>  -> "abc"
+"    
+"    cst<html>
+"    <a>abc</a>  -> <html>abc</html>
+"    
+"    # 删除: ds"
+"    "Hello world!" -> Hello world!
+"    
+"    # 添加(ys=you surround): ysiw"
+"    Hello -> "Hello"
+"    
+"    # 添加: csw"
+"    Hello -> "Hello"
+"    
+"    # 添加-整行: yss"
+"    Hello world -> "Hello world"
+"    
+"    # ySS"
+"    Hello world ->
+"    "
+"        hello world
+"    "
+"    
+"    # 添加-两个词: veeS"
+"    hello world -> "hello world"
+"    
+"    # 添加-当前到行尾: ys$"
+"    
+"    # 左符号/右符号 => 带不带空格
+"    cs([
+"    (hello) -> [ hello ]
+"    
+"    cs(]
+"    (hello) -> [hello]
 "
 "Visual mode
 "-----------
@@ -165,7 +319,16 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 
-"==========================================
+" vim-repeat
+" repeat vim-surround by .
+
+
+
+" vim-obsession
+" :mks
+
+
+
 " quickrun
 let g:quickrun_config = {
             \   "_" : {
@@ -179,7 +342,6 @@ nmap <Leader>r <Plug>(quickrun)
 
 
 
-"==========================================
 " neocomplete
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -255,9 +417,30 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 
-"==========================================
+" MarkdownPreview
+let g:mkdp_path_to_chrome = "open -a Safari"
+" path to the chrome or the command to open chrome(or other modern browsers)
 
+let g:mkdp_auto_start = 0
+" set to 1, the vim will open the preview window once enter the markdown
+" buffer
 
+let g:mkdp_auto_open = 0
+" set to 1, the vim will auto open preview window when you edit the
+" markdown file
+
+let g:mkdp_auto_close = 1
+" set to 1, the vim will auto close current preview window when change
+" from markdown buffer to another buffer
+
+let g:mkdp_refresh_slow = 0
+" set to 1, the vim will just refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+
+let g:mkdp_command_for_global = 0
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it just can be use in markdown file
 
 
 
@@ -314,12 +497,6 @@ set cursorline
 "退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "set t_ti= t_te=
 
-"- 则点击光标不会换,用于复制
-set mouse-=a             " 鼠标暂不启用, 键盘党....
-"set mouse=a                 " Automatically enable mouse usage
-"set mousehide               " Hide the mouse cursor while typing
-
-
 "修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
 set selection=inclusive
@@ -355,7 +532,7 @@ set showcmd
 set showmode
 
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-"set scrolloff=7
+set scrolloff=5
 
 " set winwidth=79
 
@@ -423,7 +600,7 @@ set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键�
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 
 " tab和space可见
-set list listchars=tab:→\ ,trail:·
+"set list listchars=tab:→\ ,trail:·
 
 " A buffer becomes hidden when it is abandoned
 "set hidden
@@ -517,7 +694,7 @@ endif
 nnoremap ; :
 
 " Esc & save
-inoremap jj <Esc>:w<CR>
+inoremap jj <Esc>:w<CR>zz
 
 " 关闭方向键, 强迫自己用 hjkl
 map <Left> <Nop>
@@ -540,7 +717,22 @@ nnoremap gj j
 " F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " F6 语法开关，关闭语法可以加快大文件的展示
 
-nmap <F1> <Esc>
+
+
+"- 则点击光标不会换,用于复制
+"set mouse-=a             " 鼠标暂不启用, 键盘党....
+set mouse=a                 " Automatically enable mouse usage
+"set mousehide               " Hide the mouse cursor while typing
+"set mouse=inh                " 普通插入和帮助模式有效, 可视模式无效用于复制
+function! SetMouse()
+    if(&mouse == 'a')
+        set mouse=
+    else
+        set mouse=a
+    endif
+    call HideNumber()
+endfunc
+noremap <F1> :call SetMouse()<CR>
 
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -553,13 +745,13 @@ function! HideNumber()
   endif
   set number?
 endfunc
-nnoremap <F2> :call HideNumber()<CR>
+noremap <F2> :call HideNumber()<CR>
 
 " 显示不可见字符
-nnoremap <F3> :set list! list?<CR>
+noremap <F3> :set list! list?<CR>
 
 " 换行
-nnoremap <F4> :set wrap! wrap?<CR>
+noremap <F4> :set wrap! wrap?<CR>
 
 " set paste
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
@@ -568,14 +760,17 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+noremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 " NeoCompleteToggle
-nmap <F7> :NeoCompleteToggle<CR>
+noremap <F7> :NeoCompleteToggle<CR>
 
 " SyntasticToggle
-nmap <F8> :SyntasticToggleMode<CR>
+noremap <F8> :SyntasticToggleMode<CR>
 
+" MarkdownPreview
+noremap <silent> <F9> :MarkdownPreview<CR>
+"noremap <silent> <F9> :MarkdownPreviewStop<CR>:MarkdownPreview<CR>
 
 " 分屏窗口移动
 "map <C-j> <C-W>j
@@ -625,7 +820,6 @@ noremap <silent><leader>/ :nohls<CR>
 
 " --------tab/buffer相关
 "Use arrow key to change buffer"
-" TODO: 如何跳转到确定的buffer?
 " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
@@ -679,6 +873,9 @@ autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
 " ------- 选中及操作改键
 
+" {}
+inoremap <Leader>b {}<LEFT><CR><ESC>O
+
 " move lines like eclipse
 nnoremap <C-S-Up> ddkP
 inoremap <C-S-Up> <Esc>ddkPi
@@ -700,7 +897,7 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 
 " select all to clipboard
-map <Leader>sa ggVG"+
+"map <Leader>sa ggVG"+
 
 " auto jump to end of select
 " vnoremap <silent> y y`]
@@ -708,8 +905,8 @@ map <Leader>sa ggVG"+
 " nnoremap <silent> p p`]
 
 " select block
-nnoremap <leader>bn V`}
-nnoremap <leader>bn V`}
+"nnoremap <leader>bp V`{
+"nnoremap <leader>bn V`}
 
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
@@ -729,7 +926,7 @@ nnoremap <leader>w :w<CR>
 nnoremap U <C-r>
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>vv :e $DOTFILES/vimrc<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Automatically set paste mode in Vim when pasting in insert mode
@@ -747,12 +944,6 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "==========================================
 " FileType Settings  文件类型设置
@@ -761,7 +952,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " Python 文件的一般设置，比如不要 tab 等
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown
+
 
 
 " 保存文件时删除多余空格
@@ -863,3 +1055,4 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 
 " fzf
 set rtp+=~/.fzf
+map <Leader>f :FZF ~<CR>

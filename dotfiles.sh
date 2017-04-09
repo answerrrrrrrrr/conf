@@ -6,17 +6,12 @@ sudo apt-get install zsh tmux autojump wget guake
 # sudo apt-get install open-vm-tools-desktop fuse
 
 
+
+# vim
 if [ -f ~/.vimrc ]; then
     mv ~/.vimrc ~/.vimrc.bak
 fi
 echo "source $filepath/vimrc" > ~/.vimrc
-
-#if [ ! -d ~/.vim/bundle ]; then
-    #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-#else
-    #echo "[*] Vundle exists."
-#fi
-
 
 if [ ! -d ~/.vim/autoload ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -26,23 +21,28 @@ else
 fi
 
 
+
+# tmux
 if [ -f ~/.tmux.conf ]; then
     mv ~/.tmux.conf ~/.tmux.conf.bak
 fi
 echo "source $filepath/tmux.conf" > ~/.tmux.conf
 
 
+
+# git
 if [ -f ~/.gitconfig ]; then
     mv ~/.gitconfig ~/.gitconfig.bak
 fi
 cp $filepath/gitconfig ~/.gitconfig
 
 
+
+# zsh
 if [ -f ~/.zshrc ]; then
     mv ~/.zshrc ~/.zshrc.bak
 fi
 echo "source $filepath/zshrc" > ~/.zshrc
-
 
 if [ ! -d ~/.oh-my-zsh ]
 then
@@ -50,21 +50,38 @@ then
 else
     echo "[*] Oh-my-zsh exists."
 fi
-cp amber.zsh-theme  ~/.oh-my-zsh/themes
+# cp amber.zsh-theme  ~/.oh-my-zsh/themes
 
 
-#if [ ! -d ~/.fzf ]
-#then
-    #git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    #~/.fzf/install
-#else
-    #echo "[*] fzf exists."
-#fi
+
+# Source Code Pro
+if [ ! -d ~/.fonts ]; then
+    mkdir ~/.fonts
+fi
+cp -r OTF/* ~/.fonts
+fc-cache -f -v
 
 
+
+# fzf
+if [ ! -d ~/.fzf ]
+then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+else
+    echo "[*] fzf exists."
+fi
+
+
+
+# lantern
+# sudo apt install gdebi-core
+# sudo gdebi ../lantern-installer-beta-64-bit.deb
+
+
+
+# chsh & reboot
 chsh -s /bin/zsh
-#echo "export DOTFILES=$filepath" >> $filepath/zshrc
-
 
 echo -n "[*] Ready to reboot? [y/N]"
 read choice

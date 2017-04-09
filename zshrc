@@ -46,7 +46,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(git autojump themes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,6 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export DOTFILES=~/Documents/Nutstore/dotfiles
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -75,21 +76,14 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 #[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 # fzf
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-alias mv='mv -v'
-alias cp='cp -vr'
-alias rm='rm -vr'
+alias cp='cp -r'
+alias rm='rm -r'
 alias p='python'
 alias tmux='tmux -2'
-alias pg='ps -e | grep'
+alias pg='ps -ef | grep'
 alias op='nautilus .'
 # alias op='dolphin .'
 
@@ -99,10 +93,8 @@ alias vv='vim $DOTFILES/vimrc'
 alias vt='vim $DOTFILES/tmux.conf'
 alias vz='vim $DOTFILES/zshrc'
 #alias sz='source $DOTFILES/zshrc'
-alias sz='source ~/.zshrc'
+alias sz='. ~/.zshrc'
 
-alias t2x='tmux show-buffer | xclip -selection clipboard'
-alias x2t='tmux set-buffer "$(xclip -o)"'
-
-export DOTFILES=~/Documents/Nutstore/dotfiles
+alias ttc='tmux show-buffer | xclip -selection clipboard'
+alias tb='tmux show-buffer'
 
