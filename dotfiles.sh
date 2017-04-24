@@ -75,6 +75,12 @@ fi
 
 
 
+# shadowsocks
+# sudo apt-get install python-pip
+# pip install shadowsocks
+
+
+
 # lantern
 # sudo apt install gdebi-core
 # sudo gdebi ../lantern-installer-beta-64-bit.deb
