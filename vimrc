@@ -56,6 +56,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'Shougo/neocomplete'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
 
 
 call plug#end()
@@ -159,6 +160,19 @@ let NERDTreeMinimalUI=1
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<Esc>'
 
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
 
 
 " tagbar
@@ -585,6 +599,7 @@ fun! ToggleFold()
         let g:FoldMethod = 0
     endif
 endfun
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> " space toggle
 
 " 缩进配置
 set smartindent   " Smart indent
@@ -709,21 +724,18 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
+
+
 " F1 - F6 设置
-" F1 废弃这个键,防止调出系统帮助
-" F2 行号开关，用于鼠标复制代码用
-" F3 显示可打印字符开关
-" F4 换行开关
-" F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
-" F6 语法开关，关闭语法可以加快大文件的展示
 
 
 
-"- 则点击光标不会换,用于复制
+" F1 关闭鼠标和行号, 用于复制
 "set mouse-=a             " 鼠标暂不启用, 键盘党....
 set mouse=a                 " Automatically enable mouse usage
-"set mousehide               " Hide the mouse cursor while typing
-"set mouse=inh                " 普通插入和帮助模式有效, 可视模式无效用于复制
+
+noremap <F1> :call SetMouse()<CR>
+
 function! SetMouse()
     if(&mouse == 'a')
         set mouse=
@@ -732,9 +744,7 @@ function! SetMouse()
     endif
     call HideNumber()
 endfunc
-noremap <F1> :call SetMouse()<CR>
 
-" 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
   if(&relativenumber == &number)
     set relativenumber! number!
@@ -745,7 +755,14 @@ function! HideNumber()
   endif
   set number?
 endfunc
-noremap <F2> :call HideNumber()<CR>
+
+
+" F2 set paste
+set pastetoggle=<F2>
+" disbale paste mode when leaving insert mode
+au InsertLeave * set nopaste
+
+
 
 " 显示不可见字符
 noremap <F3> :set list! list?<CR>
@@ -753,13 +770,7 @@ noremap <F3> :set list! list?<CR>
 " 换行
 noremap <F4> :set wrap! wrap?<CR>
 
-" set paste
-set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
-" disbale paste mode when leaving insert mode
-au InsertLeave * set nopaste
-
+" 语法高亮
 noremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 " NeoCompleteToggle

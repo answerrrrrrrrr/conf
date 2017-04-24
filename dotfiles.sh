@@ -2,7 +2,8 @@
 
 filepath=$(cd "$(dirname "$0")"; pwd)
 
-sudo apt-get install zsh tmux autojump wget guake
+sudo apt-get install zsh tmux autojump wget
+# sudo apt-get install guake
 # sudo apt-get install open-vm-tools-desktop fuse
 
 

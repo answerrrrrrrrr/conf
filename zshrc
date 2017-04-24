@@ -79,11 +79,12 @@ export DOTFILES=~/Documents/Nutstore/dotfiles
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-alias cp='cp -r'
-alias rm='rm -r'
+alias mv='mv -v'
+alias cp='cp -rv'
+alias rm='rm -rv'
 alias p='python'
 alias tmux='tmux -2'
-alias pg='ps -ef | grep'
+alias pg='ps -ef | grep -v grep | grep'
 alias op='nautilus .'
 # alias op='dolphin .'
 
