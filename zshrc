@@ -78,6 +78,10 @@ export DOTFILES=~/Documents/Nutstore/dotfiles
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# tmux
+source $DOTFILES/tmuxinator.zsh
+export EDITOR='vim'
+
 
 alias mv='mv -v'
 alias cp='cp -rv'

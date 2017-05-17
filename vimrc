@@ -634,14 +634,14 @@ au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+"function! NumberToggle()
+  "if(&relativenumber == 1)
+    "set norelativenumber number
+  "else
+    "set relativenumber
+  "endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
 
 
 "==========================================
@@ -1057,8 +1057,8 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 " powerline
-set rtp+=~/powerline-develop/powerline/bindings/vim
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+"set rtp+=~/powerline-develop/powerline/bindings/vim
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 "let g:Powerline_symbols = 'fancy'
 "set fillchars+=stl:\ ,stlnc:\
 "set term=xterm-256color
