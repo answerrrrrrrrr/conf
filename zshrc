@@ -1,13 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="air9"
-#ZSH_THEME="bureau"
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -48,33 +42,20 @@ ZSH_THEME="air9"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump themes)
-
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export DOTFILES=~/Documents/Nutstore/dotfiles
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# autojump
-#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -83,24 +64,35 @@ export DOTFILES=~/Documents/Nutstore/dotfiles
 source $DOTFILES/tmuxinator.zsh
 export EDITOR='vim'
 
-
+# Aliases
 alias mv='mv -v'
 alias cp='cp -rv'
-alias rm='rm -rv'
 alias p='python'
 alias tmux='tmux -2'
 alias pg='ps -ef | grep -v grep | grep'
 alias op='nautilus .'
 # alias op='dolphin .'
-
 alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 
 alias vv='vim $DOTFILES/vimrc'
 alias vt='vim $DOTFILES/tmux.conf'
 alias vz='vim $DOTFILES/zshrc'
-#alias sz='source $DOTFILES/zshrc'
 alias sz='. ~/.zshrc'
 
 alias ttc='tmux show-buffer | xclip -selection clipboard'
 alias tb='tmux show-buffer'
 
+# Safe rm (http://blog.csdn.net/wklken/article/details/6898590)
+mkdir -p ~/.trash
+alias rm=trash
+alias lstrash='ls ~/.trash'
+trash() {
+    mv $@ ~/.trash/
+}
+untrash() {
+    mv -i ~/.trash/$@ ./
+}
+cleartrash() {
+    read -p "Clear trash?[y/N]" confirm
+    [ $confirm == 'y'] || [ $confirm == 'Y' ] && /usr/bin/rm -rfv ~/.trash/*
+}
