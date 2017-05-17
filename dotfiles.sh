@@ -51,7 +51,7 @@ then
 else
     echo "[*] Oh-my-zsh exists."
 fi
-# cp amber.zsh-theme  ~/.oh-my-zsh/themes
+cp air9.zsh-theme  ~/.oh-my-zsh/themes
 
 
 
