@@ -45,12 +45,12 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $DOTFILES/tmuxinator.zsh
-export EDITOR='vim'
-
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export DOTFILES=~/Documents/Nutstore/dotfiles
+
+source $DOTFILES/tmuxinator.zsh
+export EDITOR='vim'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
