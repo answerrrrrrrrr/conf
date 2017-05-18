@@ -75,6 +75,12 @@ alias vt='vim $DOTFILES/tmux.conf'
 alias vz='vim $DOTFILES/zshrc'
 alias sz='. ~/.zshrc'
 
+alias sv='source ~/venv/bin/activate'
+alias sv3='source ~/venv3/bin/activate'
+alias glg='glol'
+alias gitzsh='less ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
+alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
+
 alias ttc='tmux show-buffer | xclip -selection clipboard'
 alias tb='tmux show-buffer'
 
