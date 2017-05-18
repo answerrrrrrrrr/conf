@@ -111,6 +111,8 @@ alias vz='vim $DOTFILES/zshrc-mac'
 alias sz='source ~/.zshrc'
 alias sv='source ~/venv/bin/activate'
 alias sv3='source ~/venv3/bin/activate'
+alias glg='glol'
+alias gitzsh='less ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
 alias resetanaconda='cp /Users/air9/Documents/360/Backup/Sublime/Packages/Anaconda/Anaconda.sublime-settings /Users/air9/Library/Application\ Support/Sublime\ Text\ 3/Packages/Anaconda/Anaconda.sublime-settings'
 

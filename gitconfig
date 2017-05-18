@@ -6,10 +6,10 @@
 [core]
     editor = vim
 [alias]
-    ad = add -A
-    cm = commit -m
-    br = branch
-    co = checkout
-    st = status
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    rh = reset --hard HEAD
+    /*ad = add -A*/
+    /*cm = commit -m*/
+    /*br = branch*/
+    /*co = checkout*/
+    /*st = status*/
+    /*lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit*/
+    /*rh = reset --hard HEAD*/
