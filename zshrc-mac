@@ -39,7 +39,7 @@ export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # proxy
-#alias proxy="polipo socksParentProxy=localhost:1086"
+alias pst='echo $http_proxy; curl ip.cn'
 export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 pon () {
     export http_proxy="http://127.0.0.1:1087/"

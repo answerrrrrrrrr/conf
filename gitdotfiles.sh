@@ -9,5 +9,5 @@ cp ~/.zshrc $dst/zshrc-mac
 
 cd $dst
 git add --all
-git commit -m "updated."
+git commit -m "updated"
 git push
