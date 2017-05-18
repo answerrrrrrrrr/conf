@@ -40,9 +40,13 @@ ZSH_THEME="air9"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump themes)
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source $DOTFILES/tmuxinator.zsh
+export EDITOR='vim'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
@@ -57,14 +61,6 @@ export DOTFILES=~/Documents/Nutstore/dotfiles
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# tmux
-source $DOTFILES/tmuxinator.zsh
-export EDITOR='vim'
-
-# Aliases
 alias mv='mv -v'
 alias cp='cp -rv'
 alias p='python'

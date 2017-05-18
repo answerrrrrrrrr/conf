@@ -2,9 +2,9 @@
 
 filepath=$(cd "$(dirname "$0")"; pwd)
 
-sudo apt-get install zsh tmux autojump wget curl
-# sudo apt-get install guake
-# sudo apt-get install open-vm-tools-desktop fuse
+sudo apt install zsh tmux autojump wget curl
+# sudo apt install guake
+# sudo apt install open-vm-tools-desktop fuse
 
 
 
@@ -76,7 +76,7 @@ fi
 
 
 # shadowsocks
-# sudo apt-get install python-pip
+# sudo apt install python-pip
 # pip install shadowsocks
 
 

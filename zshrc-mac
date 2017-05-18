@@ -1,16 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="agnoster"
-ZSH_THEME="bureau"
-
-# Powerline
-#. ~/powerline-develop/powerline/bindings/zsh/powerline.zsh
-
+ZSH_THEME="air9"
+#ZSH_THEME="bureau"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,32 +41,20 @@ ZSH_THEME="bureau"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump themes)
+source $ZSH/oh-my-zsh.sh
 
-# autojump
-#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 #[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/X11/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/X11/bin"
 export DOTFILES=~/Documents/Nutstore/dotfiles
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -82,34 +62,17 @@ export DOTFILES=~/Documents/Nutstore/dotfiles
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
-
-# Java
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
 
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Users/air9/Library/Cocos/CocosStore/cocos2d-x-3.4/tools/cocos2d-console/bin
-export PATH=$PATH:$COCOS_CONSOLE_ROOT
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT=/Users/air9/Library/Cocos/CocosStore/cocos2d-x-3.4/templates
-export PATH=$PATH:$COCOS_TEMPLATES_ROOT
-
-# Add environment variable NDK_ROOT for cocos2d-x
 export NDK_ROOT=/Applications/adt-bundle-mac-x86_64/ndk/android-ndk-r10d
 export PATH=$PATH:$NDK_ROOT
 
-# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
 export ANDROID_SDK_ROOT=/Applications/adt-bundle-mac-x86_64/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
 
-# Add environment variable ANT_ROOT for cocos2d-x
 export ANT_ROOT=/usr/local/Cellar/ant/1.9.4/libexec/bin
 export PATH=$PATH:$ANT_ROOT
 
@@ -119,6 +82,10 @@ export PATH=$PATH:/usr/local/texlive/2014/bin/universal-darwin
 # mysql
 export PATH=$PATH:/usr/local/mysql/bin
 
+# postgres
+export DATABASE_URL=postgres:///$(whoami)
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
 # mongodb
 export PATH=$PATH:/usr/local/Cellar/mongodb/3.2.9/bin
 
@@ -127,26 +94,25 @@ export PATH=$PATH:/usr/local/Cellar/mongodb/3.2.9/bin
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias op='open .'
-alias mv='mv '
-alias cp='cp -r'
-alias rm='rm -r'
+alias mv='mv -v'
+alias cp='cp -rv'
 alias pg='ps -ef | grep -v grep | grep'
 alias p='python'
+alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 alias macd="open -a /Applications/MacDown.app"
+alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
 
-#alias vv='vim ~/.vimrc'
 alias vv='vim $DOTFILES/vimrc'
 alias vt='vim $DOTFILES/tmux.conf'
-alias vz='vim ~/.zshrc'
+alias vz='vim $DOTFILES/zshrc-mac'
+#alias vz='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias sv='source ~/venv/bin/activate'
-alias s3v='source ~/v3.5.1env/bin/activate'
+alias sv3='source ~/venv3/bin/activate'
+alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
 alias resetanaconda='cp /Users/air9/Documents/360/Backup/Sublime/Packages/Anaconda/Anaconda.sublime-settings /Users/air9/Library/Application\ Support/Sublime\ Text\ 3/Packages/Anaconda/Anaconda.sublime-settings'
-alias gitdotfiles='sh ~/Documents/Nutstore/gitdotfiles.sh'
-alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
-alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 
 # rbenv
 eval   "$(rbenv init -)"
@@ -157,7 +123,7 @@ export PYENV_ROOT=/usr/local/var/pyenv
 # To enable shims and autocompletion add to your profile:
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-#proxy
+# proxy
 #alias proxy="polipo socksParentProxy=localhost:1086"
 export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
 pon () {
@@ -170,7 +136,7 @@ poff () {
     unset https_proxy
     unset ftp_proxy
 }
-# charles proxy
+# charles
 pch () {
     export http_proxy="http://127.0.0.1:8888/"
     export https_proxy="http://127.0.0.1:8888/"
@@ -182,15 +148,6 @@ plantern () {
     export https_proxy="http://127.0.0.1:52567/"
     export ftp_proxy="http://127.0.0.1:52567/"
 }
-
-# postgres
-export DATABASE_URL=postgres:///$(whoami)
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # Safe rm (http://blog.csdn.net/wklken/article/details/6898590)
 mkdir -p ~/.trash
