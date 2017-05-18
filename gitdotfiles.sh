@@ -1,12 +1,13 @@
 #/bin/sh
 
 # src=`pwd`
-dst=~/Documents/Github/conf/
 
-cp -rf $DOTFILES/* $dst
+dst=~/Documents/Github/conf
+
+cp -rf $DOTFILES/* $dst/
+cp ~/.zshrc $dst/zshrc-mac
 
 cd $dst
-
 git add --all
-git commit -m "update dotfiles."
+git commit -m "updated."
 git push

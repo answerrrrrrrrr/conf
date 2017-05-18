@@ -1,8 +1,6 @@
-source $DOTFILES/zshrc
+source ~/Documents/Nutstore/dotfiles/zshrc
 
-# export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/X11/bin"
-export DOTFILES=~/Documents/Nutstore/dotfiles
+export PATH=$PATH:/opt/X11/bin
 
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
@@ -32,7 +30,7 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 export PATH=$PATH:/usr/local/Cellar/mongodb/3.2.9/bin
 
 # rbenv
-eval   "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 # pyenv
 # To use Homebrew‘s directories rather than ~/.pyenv add to your profile:
@@ -68,6 +66,5 @@ plantern () {
 
 
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-alias macd="open -a /Applications/MacDown.app"
 alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
 

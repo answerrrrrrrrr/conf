@@ -61,19 +61,21 @@ export EDITOR='vim'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+alias p='python'
 alias mv='mv -v'
 alias cp='cp -rv'
-alias p='python'
 alias tmux='tmux -2'
 alias pg='ps -ef | grep -v grep | grep'
-alias op='nautilus .'
-# alias op='dolphin .'
+alias op='opeeennn .'
+alias opu='nautilus .'
+alias opk='dolphin .'
 alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 
 alias vv='vim $DOTFILES/vimrc'
 alias vt='vim $DOTFILES/tmux.conf'
 alias vz='vim $DOTFILES/zshrc'
-alias sz='. ~/.zshrc'
+alias vzz='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
 
 alias sv='source ~/venv/bin/activate'
 alias sv3='source ~/venv3/bin/activate'
