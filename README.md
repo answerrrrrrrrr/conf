@@ -10,3 +10,7 @@ Mac, Ubuntu or Kali 下的自用配置文件汇总.
 - `vim-doc-cn/`: vim 中文帮助文档
 - `air9.zsh-theme`: 自用 zsh 主题
 - `monokai.dvtcolortheme`: Xcode 的 monokai 配色
+
+## EXTRA
+听说大斌狗要视察我的配置, 吓得我赶紧加了 README ╰_╯
+
