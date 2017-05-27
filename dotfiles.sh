@@ -48,6 +48,7 @@ echo "source $filepath/zshrc" > ~/.zshrc
 if [ ! -d ~/.oh-my-zsh ]
 then
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+    git clone git://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 else
     echo "[*] Oh-my-zsh exists."
 fi

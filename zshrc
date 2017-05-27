@@ -39,8 +39,7 @@ ZSH_THEME="air9"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump themes)
+plugins=(git autojump colored-man-pages sudo zsh-syntax-highlighting !history)
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -85,6 +84,12 @@ alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
 
 alias ttc='tmux show-buffer | xclip -selection clipboard'
 alias tb='tmux show-buffer'
+
+alias -s zip='unzip'
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s bz2='tar -xjvf'
+
 
 # Safe rm (http://blog.csdn.net/wklken/article/details/6898590)
 mkdir -p ~/.trash
