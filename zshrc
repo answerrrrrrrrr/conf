@@ -88,15 +88,15 @@ alias tb='tmux show-buffer'
 
 # Safe rm (http://blog.csdn.net/wklken/article/details/6898590)
 mkdir -p ~/.trash
-alias rm=trash
-alias lstrash='ls ~/.trash'
-trash() {
+alias rm=rmt
+rmt() {     # trash
     mv $@ ~/.trash/
 }
-untrash() {
-    mv -i ~/.trash/$@ ./
+rml() {     # list
+    ls -lAh ~/.trash
 }
-cleartrash() {
-    read -p "Clear trash?[y/N]" confirm
-    [ $confirm == 'y'] || [ $confirm == 'Y' ] && /usr/bin/rm -rfv ~/.trash/*
+rme() {     # empty
+    #read -p "Clear trash?[y/N]" confirm
+    #[ $confirm = 'y' ] || [ $confirm = 'Y' ] && /bin/rm -rfv ~/.trash/.* ~/.trash/*
+    /bin/rm -rfv ~/.trash/.* ~/.trash/*
 }

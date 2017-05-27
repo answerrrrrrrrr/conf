@@ -68,3 +68,4 @@ plantern () {
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
 
+alias rm=trash

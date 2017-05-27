@@ -51,8 +51,7 @@ then
 else
     echo "[*] Oh-my-zsh exists."
 fi
-# cp air9.zsh-theme  ~/.oh-my-zsh/themes
-echo "source $filepath/air9.zsh-theme" > air9.zsh-theme
+echo "source $filepath/air9.zsh-theme" > ~/.oh-my-zsh/themes/air9.zsh-theme
 
 
 
