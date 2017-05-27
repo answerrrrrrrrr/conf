@@ -51,16 +51,17 @@ then
 else
     echo "[*] Oh-my-zsh exists."
 fi
-cp air9.zsh-theme  ~/.oh-my-zsh/themes
+# cp air9.zsh-theme  ~/.oh-my-zsh/themes
+echo "source $filepath/air9.zsh-theme" > air9.zsh-theme
 
 
 
 # Source Code Pro
 if [ ! -d ~/.fonts ]; then
     mkdir ~/.fonts
+    cp -r OTF/* ~/.fonts
+    fc-cache -f -v
 fi
-cp -r OTF/* ~/.fonts
-fc-cache -f -v
 
 
 
