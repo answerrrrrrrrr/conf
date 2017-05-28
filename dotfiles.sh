@@ -31,14 +31,6 @@ echo "source $filepath/tmux.conf" > ~/.tmux.conf
 
 
 
-# git
-if [ -f ~/.gitconfig ]; then
-    mv ~/.gitconfig ~/.gitconfig.bak
-fi
-cp $filepath/gitconfig ~/.gitconfig
-
-
-
 # zsh
 if [ -f ~/.zshrc ]; then
     mv ~/.zshrc ~/.zshrc.bak
