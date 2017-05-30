@@ -68,11 +68,11 @@ fi
 
 
 
-# shadowsocks
-# sudo apt install python-pip
+# easy_install pip   // apt install python-pip
+
+# pip install powerline-status
+
 # pip install shadowsocks
-
-
 
 # lantern
 # sudo apt install gdebi-core
@@ -80,7 +80,6 @@ fi
 
 
 
-# chsh & reboot
 chsh -s /bin/zsh
 
 echo -n "[*] Ready to reboot? [y/N]"

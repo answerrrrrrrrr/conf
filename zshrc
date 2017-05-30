@@ -5,19 +5,16 @@ ZSH_THEME="air9"
 # DISABLE_AUTO_UPDATE="true"
 export UPDATE_ZSH_DAYS=30
 ENABLE_CORRECTION="true"
+HIST_STAMPS="yyyy-mm-dd"    # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+setopt HIST_IGNORE_ALL_DUPS
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git autojump colored-man-pages sudo zsh-syntax-highlighting !history)
+plugins=(git autojump colored-man-pages extract sudo zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -41,7 +38,8 @@ alias mv='mv -v'
 alias cp='cp -rv'
 alias tmux='tmux -2'
 alias pg='ps -ef | grep -v grep | grep'
-alias op='dolphin . 2>/dev/null || nautilus . 2>/dev/null || open .'
+alias op='dolphin . || nautilus . || open .'
+#alias op='dolphin . 2>/dev/null || nautilus . 2>/dev/null || open .'
 alias path='echo $path | python -c "for i in raw_input().split(): print i"'
 
 alias vv='vim $DOTFILES/vimrc'
@@ -59,10 +57,11 @@ alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
 alias ttc='tmux show-buffer | xclip -selection clipboard'
 alias tb='tmux show-buffer'
 
-alias -s zip='unzip'
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s bz2='tar -xjvf'
+alias -s md='vim'
+#alias -s zip='unzip'
+#alias -s gz='tar -xzvf'
+#alias -s tgz='tar -xzvf'
+#alias -s bz2='tar -xjvf'
 
 # Safe rm
 mkdir -p ~/.trash
