@@ -2,9 +2,9 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="air9"
 
-# DISABLE_AUTO_UPDATE="true"
+#DISABLE_AUTO_UPDATE="true"
 export UPDATE_ZSH_DAYS=30
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"    # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 setopt HIST_IGNORE_ALL_DUPS
 
@@ -48,8 +48,6 @@ alias vz='vim $DOTFILES/zshrc'
 alias vzz='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 
-alias sv='source ~/venv/bin/activate'
-alias sv3='source ~/venv3/bin/activate'
 alias glg='glol'
 alias gitzsh='less ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'

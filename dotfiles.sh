@@ -68,7 +68,7 @@ fi
 
 
 
-# easy_install pip   // apt install python-pip
+# apt install python-pip
 
 # pip install powerline-status
 
@@ -84,10 +84,8 @@ chsh -s /bin/zsh
 
 echo -n "[*] Ready to reboot? [y/N]"
 read choice
-if [ $choice = "y" -o $choice = "Y" ]
+if [ "$choice" = "y" -o "$choice" = "Y" ]
 then
     echo "[*] Rebooting..."
     sudo reboot
-else
-    echo "[*] Reboot later..."
 fi
