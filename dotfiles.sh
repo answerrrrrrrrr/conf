@@ -2,7 +2,7 @@
 
 filepath=$(cd "$(dirname "$0")"; pwd)
 
-sudo apt install zsh tmux autojump wget curl ranger
+sudo apt install zsh tmux autojump wget curl ranger build-essential
 # sudo apt install guake
 # sudo apt install open-vm-tools-desktop fuse
 
@@ -32,11 +32,6 @@ echo "source $filepath/tmux.conf" > ~/.tmux.conf
 
 
 # zsh
-if [ -f ~/.zshrc ]; then
-    mv ~/.zshrc ~/.zshrc.bak
-fi
-echo "source $filepath/zshrc" > ~/.zshrc
-
 if [ ! -d ~/.oh-my-zsh ]
 then
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -46,14 +41,19 @@ else
 fi
 echo "source $filepath/air9.zsh-theme" > ~/.oh-my-zsh/themes/air9.zsh-theme
 
+if [ -f ~/.zshrc ]; then
+    mv ~/.zshrc ~/.zshrc.bak
+fi
+echo "source $filepath/zshrc" > ~/.zshrc
+
 
 
 # Source Code Pro
-if [ ! -d ~/.fonts ]; then
-    mkdir ~/.fonts
-    cp -r OTF/* ~/.fonts
-    fc-cache -f -v
-fi
+#if [ ! -d ~/.fonts ]; then
+    #mkdir ~/.fonts
+    #cp -r OTF/* ~/.fonts
+    #fc-cache -f -v
+#fi
 
 
 

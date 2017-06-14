@@ -8,7 +8,6 @@
 #
 #==========================================
 
-# git
 function _git_time_since_commit() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     # Only proceed if there is actually a commit.
@@ -65,11 +64,10 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[yellow]%}"
 
 
 
-# gadgets
 if [[ $USER == "root" ]]; then
   CARETCOLOR="white"
 else
-  CARETCOLOR="white"
+  CARETCOLOR="green"
 fi
 
 local _color_prompt="%{$fg[${CARETCOLOR}]%}%(?..%{$fg[red]%})>%{$reset_color%}"
@@ -93,7 +91,6 @@ function _ruby_version() {
 
 
 
-# prompt
 local PROMPT_L1='${_date_time} $(_user_host)${_current_dir}$(git_prompt_info)$(_git_time_since_commit)$(git_prompt_status)$(git_prompt_ahead)$(_ruby_version)'
 
 local PROMPT_L2='${_return_code_neat}${_color_prompt} '
