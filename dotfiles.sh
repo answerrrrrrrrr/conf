@@ -1,10 +1,18 @@
-#/bin/sh
+#/bin/bash
+
+# set -x    # Display commands
 
 filepath=$(cd "$(dirname "$0")"; pwd)
 
-sudo apt install zsh tmux autojump wget curl ranger build-essential
-# sudo apt install guake
-# sudo apt install open-vm-tools-desktop fuse
+
+
+if [ `whoami` != "root" ];then
+    SUDO="sudo "
+fi
+
+$SUDO apt install zsh tmux autojump wget curl ranger build-essential
+# $SUDO apt install guake
+# $SUDO apt install open-vm-tools-desktop fuse
 
 
 
@@ -68,15 +76,15 @@ fi
 
 
 
-# apt install python-pip
+# $SUDO apt install python-pip
 
 # pip install powerline-status
 
 # pip install shadowsocks
 
 # lantern
-# sudo apt install gdebi-core
-# sudo gdebi ../lantern-installer-beta-64-bit.deb
+# $SUDO apt install gdebi-core
+# $SUDO gdebi ../lantern-installer-beta-64-bit.deb
 
 
 
@@ -87,5 +95,5 @@ read choice
 if [ "$choice" = "y" -o "$choice" = "Y" ]
 then
     echo "[*] Rebooting..."
-    sudo reboot
+    $SUDO reboot
 fi
