@@ -9,9 +9,9 @@ filepath=$(cd "$(dirname "$0")"; pwd)
 if [ `whoami` != "root" ];then
     SUDO="sudo"
 fi
-$SUDO apt-get install zsh tmux autojump wget curl dnsutils ranger build-essential
-# $SUDO apt-get install guake
-# $SUDO apt-get install open-vm-tools-desktop fuse
+$SUDO apt-get install -y zsh tmux autojump wget curl dnsutils ranger build-essential
+# $SUDO apt-get install -y guake
+# $SUDO apt-get install -y open-vm-tools-desktop fuse
 
 
 
@@ -80,7 +80,7 @@ fi
 # pip install shadowsocks
 
 # lantern
-# $SUDO apt-get install gdebi-core
+# $SUDO apt-get install -y gdebi-core
 # $SUDO gdebi ../lantern-installer-beta-64-bit.deb
 
 
