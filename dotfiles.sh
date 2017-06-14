@@ -7,12 +7,11 @@ filepath=$(cd "$(dirname "$0")"; pwd)
 
 
 if [ `whoami` != "root" ];then
-    SUDO="sudo "
+    SUDO="sudo"
 fi
-
-$SUDO apt install zsh tmux autojump wget curl ranger build-essential
-# $SUDO apt install guake
-# $SUDO apt install open-vm-tools-desktop fuse
+$SUDO apt-get install zsh tmux autojump wget curl dnsutils ranger build-essential
+# $SUDO apt-get install guake
+# $SUDO apt-get install open-vm-tools-desktop fuse
 
 
 
@@ -76,14 +75,12 @@ fi
 
 
 
-# $SUDO apt install python-pip
-
+# $SUDO apt-get install python-pip
 # pip install powerline-status
-
 # pip install shadowsocks
 
 # lantern
-# $SUDO apt install gdebi-core
+# $SUDO apt-get install gdebi-core
 # $SUDO gdebi ../lantern-installer-beta-64-bit.deb
 
 
