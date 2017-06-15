@@ -106,3 +106,4 @@ RPROMPT=''
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd air9_precmd
+

@@ -52,8 +52,8 @@ alias glg='glol'
 alias gitzsh='less ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 alias gitdotfiles='sh $DOTFILES/gitdotfiles.sh'
 
-alias ttc='tmux show-buffer | xclip -selection clipboard'
-alias tb='tmux show-buffer'
+#alias ttc='tmux show-buffer | xclip -selection clipboard'
+#alias tb='tmux show-buffer'
 
 alias -s md='vim'
 #alias -s zip='unzip'

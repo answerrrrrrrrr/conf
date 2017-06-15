@@ -65,9 +65,9 @@ plantern () {
 }
 
 
-alias rm=trash
+alias rm=trash    # brew install trash
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
+#alias idaq='/Applications/idaq.app/Contents/MacOS/idaq'
 alias blog='sh ~/Documents/GitHub/answerrrrrrrrr.github.com/blog.sh'
 alias resetanaconda='cp /Users/air9/Documents/360/Backup/Sublime/Packages/Anaconda/Anaconda.sublime-settings /Users/air9/Library/Application\ Support/Sublime\ Text\ 3/Packages/Anaconda/Anaconda.sublime-settings'
 
