@@ -26,6 +26,8 @@ let g:mapleader = ','
 "R0 开启语法高亮
 syntax on
 
+" 不兼容vi
+set nocompatible
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -788,13 +790,6 @@ noremap <silent> <F9> :MarkdownPreview<CR>
 "map <C-k> <C-W>k
 "map <C-h> <C-W>h
 "map <C-l> <C-W>l
-
-" 插入模式操作(SecureCRT需设置“Backspace send delete”)
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
-inoremap <C-o> <Esc>o
 
 " home & end
 nnoremap <C-a> ^

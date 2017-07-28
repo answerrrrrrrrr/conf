@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # set -x    # Display commands
 
@@ -76,6 +76,7 @@ fi
 
 
 # $SUDO apt-get install python-pip
+# pip install virtualenv
 # pip install powerline-status
 # pip install shadowsocks
 
