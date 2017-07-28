@@ -1,0 +1,26 @@
+DEBUG tests/list_tests.c:108:main - ----- RUNNING: ./tests/list_tests(argc: 1)
+DEBUG tests/list_tests.c:98:all_tests - 
+----- test_create
+DEBUG tests/list_tests.c:99:all_tests - 
+----- test_push_pop
+DEBUG tests/list_tests.c:100:all_tests - 
+----- test_unshift
+DEBUG tests/list_tests.c:101:all_tests - 
+----- test_remove
+DEBUG tests/list_tests.c:102:all_tests - 
+----- test_shift
+DEBUG tests/list_tests.c:103:all_tests - 
+----- test_destroy
+DEBUG tests/list_tests.c:108:main - ----- RUNNING: ./tests/list_tests(argc: 1)
+DEBUG tests/list_tests.c:98:all_tests - 
+----- test_create
+DEBUG tests/list_tests.c:99:all_tests - 
+----- test_push_pop
+DEBUG tests/list_tests.c:100:all_tests - 
+----- test_unshift
+DEBUG tests/list_tests.c:101:all_tests - 
+----- test_remove
+DEBUG tests/list_tests.c:102:all_tests - 
+----- test_shift
+DEBUG tests/list_tests.c:103:all_tests - 
+----- test_destroy

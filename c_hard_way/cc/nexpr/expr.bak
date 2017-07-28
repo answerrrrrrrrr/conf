@@ -1,0 +1,267 @@
+/* We use the POSIX regex functions to process regular expressions.
+ * Type 'man regex' for more information about POSIX regex functions.
+ */
+#include <sys/types.h>
+#include <regex.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <assert.h>
+#include <stdio.h>
+
+typedef unsigned int uint32_t;
+
+enum {
+	NOTYPE = 256, EQ,
+
+	/* TODO: Add more token types */
+    NUMBER,
+
+};
+
+static struct rule {
+	char *regex;
+	int token_type;
+    int priority;
+} rules[] = {
+
+	/* TODO: Add more rules.
+	 * Pay attention to the precedence level of different rules.
+	 */
+
+	{" +"     , NOTYPE , 0}   , // spaces
+    {"[0-9]+" , NUMBER , 1}   ,
+	{"=="     , EQ     , 30}  ,
+	{"\\+"    , '+'    , 51}  ,
+    {"-"      , '-'    , 51}  ,
+    {"\\*"    , '*'    , 52}  ,
+    {"/"      , '/'    , 52}  ,
+    {"\\("    , '('    , 100} ,
+    {"\\)"    , ')'    , 100} ,
+};
+
+#define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
+
+static regex_t re[NR_REGEX];
+
+/* Rules are used for many times.
+ * Therefore we compile them only once before any usage.
+ */
+void init_regex() {
+	int i;
+	char error_msg[128];
+	int ret;
+
+	for(i = 0; i < NR_REGEX; i ++) {
+		ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
+		if(ret != 0) {
+			regerror(ret, &re[i], error_msg, 128);
+		}
+	}
+}
+
+typedef struct token {
+	int type;
+	char str[32];
+    int priority;
+} Token;
+
+Token tokens[32];
+int nr_token;
+
+static bool make_token(char *e) {
+	int position = 0;
+	int i;
+	regmatch_t pmatch;
+	
+	nr_token = 0;
+
+	while(e[position] != '\0') {
+		/* Try all rules one by one. */
+		for(i = 0; i < NR_REGEX; i ++) {
+			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+				char *substr_start = e + position;
+				int substr_len = pmatch.rm_eo;
+
+				position += substr_len;
+
+				/* TODO: Now a new token is recognized with rules[i]. Add codes
+				 * to record the token in the array `tokens'. For certain types
+				 * of tokens, some extra actions should be performed.
+				 */
+
+				switch(rules[i].token_type) {
+                    case NOTYPE:
+                        break;
+                    case NUMBER:
+                        if(substr_len >= 31){
+                            assert(0);
+                        }
+                        strncpy(tokens[nr_token].str, substr_start, substr_len);
+                        tokens[nr_token].str[substr_len] = '\0';
+                        /*tokens[nr_token++].type = NUMBER;*/
+                        /*break;*/
+					default:
+                        tokens[nr_token].priority = rules[i].priority;
+                        tokens[nr_token].type = rules[i].token_type;
+                        printf("%d ", rules[i].token_type);
+                        nr_token++;
+				}
+
+				break;
+			}
+		}
+
+		if(i == NR_REGEX) {
+			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+			return false;
+		}
+	}
+
+	return true; 
+}
+
+static bool check_parentheses(int p, int q, bool *success){
+    bool surrounded = true;
+
+    if(tokens[p].type != '(' || tokens[q].type != ')'){
+        surrounded = false;
+    }
+
+    int open = 0, i;
+    for(i = p; i <= q; i++){    // start with p in case of ")...("
+        /*printf("%d ", tokens[i].type);*/
+        if(tokens[i].type == '('){
+            open++;
+        }
+        else if(tokens[i].type == ')'){
+            open--;
+            if(open < 0){
+                *success = false;
+                return false;
+            }
+            else if(open == 0 && i != q){    // close p
+                surrounded = false;
+            }
+        }
+    }
+
+    if(open){
+        *success = surrounded = false;
+    }
+    return surrounded;
+}
+
+static int get_dominant_operator(int p, int q){
+    int open = 0;
+    int last_type = NOTYPE;
+    int op, min = 100;
+
+    for(int i = p; i <= q; i++){
+        int cur_type = tokens[i].type;
+        printf("%d ", cur_type);
+        int cur_priority = tokens[i].priority;
+
+        if(cur_type == '('){
+            open++;
+            continue;
+        }
+        else if(cur_type == ')'){
+            last_type = NUMBER;
+            open--;
+            continue;
+        }
+
+        if(open) continue;
+
+        /*if(cur_type == last_type){*/
+            /*printf("[%d]Duplicate token %d!\n", i, cur_type);*/
+            /*return -1;*/
+        /*}*/
+        if( (last_type == NUMBER && cur_type == NUMBER) ||
+            (last_type != NUMBER && cur_type != NUMBER) ){
+            return -1;
+        }
+
+        last_type = cur_type;
+
+        switch(cur_type){
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case EQ:
+                if(min >= cur_priority){
+                    op = i;
+                    min = cur_priority;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    return op;
+}
+
+static int eval(int p, int q, bool *success){
+    if(p > q){
+        printf("Bad expression!");
+        return 0;
+    }
+    else if(p == q){
+        if(tokens[p].type == NUMBER){
+            return strtol(tokens[p].str, NULL, 0);
+        }
+        else{
+            printf("Single token, need a NUMBER.\n");
+            return 0;
+        }
+    }
+    else if(check_parentheses(p, q, success) == true){
+        return eval(p + 1, q - 1, success);
+    }
+    else{
+        if(!success){
+            printf("Parentheses unmatched!\n");
+            return 0;
+        }
+
+        int op = get_dominant_operator(p, q);
+        if(op < 0){
+            printf("Syntax error!\n");
+            return 0;
+        }
+
+        uint32_t val1 = eval(p, op - 1, success);
+        uint32_t val2 = eval(op + 1, q, success);
+        switch(tokens[op].type){
+            case '+':
+                return val1 + val2;
+            case '-':
+                return val1 - val2;
+            case '*':
+                return val1 * val2;
+            case '/':
+                return val1 / val2;
+            case EQ:
+                return val1 == val2;
+
+            default:
+                break;
+        }
+
+
+    }
+}
+
+int expr(char *e, bool *success) {
+	if(!make_token(e)) {
+		*success = false;
+		return 0;
+	}
+
+	/* TODO: Insert codes to evaluate the expression. */
+	return 0;
+}
+
